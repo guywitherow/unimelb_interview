@@ -1,8 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
+
+import {styles} from './Style';
+import FileDropdown from './Selector';
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,26 +27,30 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.root,
+      {
+        flexDirection: 'column',
+      }
+    ]}>
+
       {fontsLoaded ? (
         <>
-          <Text style={styles.text}>Open up App.js to start working on your app!</Text>
+          <View style={styles.top}>
+
+            <FileDropdown></FileDropdown>
+            <Text style={styles.text}>Box1</Text>
+          
+          </View>
+          <View style={styles.bottom}>
+
+            <Text style={styles.text}>Box2</Text>
+          
+          </View>
           <StatusBar style="auto" />
         </>
       ) : null}
+
+      
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000C38',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontFamily: 'Fraunces',
-    color: '#D2CEC8',
-  }
-});
