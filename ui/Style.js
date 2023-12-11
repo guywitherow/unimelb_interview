@@ -19,8 +19,13 @@ export const styles = StyleSheet.create({
       padding: '10%',
     },
   
-    text: {
+    title: {
       fontFamily: 'Fraunces',
       color: '#D2CEC8',
-    }
+    },
+    body: {
+      fontFamily: 'SourceSansPro',
+      color: '#D2CEC8',
+    },
+    
   });

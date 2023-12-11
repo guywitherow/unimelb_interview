@@ -7,6 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import {styles} from './ui/Style';
 import FileDropdown from './ui/Selector';
+import SongRead from './io/SongRead';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -18,6 +19,7 @@ export default function App() {
     const loadFonts = async () => {
       await Font.loadAsync({
         'Fraunces': require('./assets/fonts/Fraunces.ttf'),
+        'SourceSansPro': require('./assets/fonts/SourceSans3.ttf'),
       });
       setFontsLoaded(true);
       await SplashScreen.hideAsync();
@@ -38,12 +40,13 @@ export default function App() {
           <View style={styles.top}>
 
             <FileDropdown></FileDropdown>
-            <Text style={styles.text}>Box1</Text>
+            <Text style={styles.title}>Box1</Text>
           
           </View>
           <View style={styles.bottom}>
 
-            <Text style={styles.text}>Box2</Text>
+            <SongRead></SongRead>
+            <Text style={styles.title}>Box2</Text>
           
           </View>
           <StatusBar style="auto" />

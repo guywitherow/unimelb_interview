@@ -9,15 +9,34 @@ const FileDropdown = () => {
         <Dropdown
           placeholder="Select a song..."
           options={[
-            { label: 'hiphop.00000', value: 'hiphop.00000' },
-            { label: 'hiphop.00001', value: 'hiphop.00001' },
-            { label: 'hiphop.00002', value: 'hiphop.00002' },
-            { label: 'hiphop.00003', value: 'hiphop.00003' },
-            { label: 'hiphop.00004', value: 'hiphop.00004' },
+            {
+              title: 'Blues',
+              data: [
+                { label: 'Pizza', value: 'A' },
+                { label: 'Burger', value: 'B' },
+                { label: 'Risotto', value: 'C' },
+              ],
+            },
+            {
+              title: 'Classical',
+              data: [
+                { label: 'Ice cream', value: 'D' },
+                { label: 'Cheesecake', value: 'E' },
+              ],
+            },
+            {
+              title: 'Drinks',
+              data: [
+                { label: 'Water', value: 'F' },
+                { label: 'Coke', value: 'G' },
+                { label: 'Juice', value: 'H' },
+              ],
+            },
           ]}
           selectedValue={song}
           onValueChange={(value) => setSong(value)}
           primaryColor={'green'}
+
         />
       );
 }
