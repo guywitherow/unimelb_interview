@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 import * as Font from 'expo-font';
@@ -7,7 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import {styles} from './ui/Style';
 import FileDropdown from './ui/Selector';
-import SongRead from './io/SongRead';
+import AudioPlayer from './ui/Player';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -26,6 +26,8 @@ export default function App() {
     };
 
     loadFonts();
+
+    AudioPlayer.playSound(require("./assets/songs/music/blues/blues.00000.wav"));
   }, []);
 
   return (
@@ -40,12 +42,12 @@ export default function App() {
           <View style={styles.top}>
 
             <FileDropdown></FileDropdown>
-            <Text style={styles.title}>Box1</Text>
+            <Text style={styles.title}>Box2</Text>
+            <AudioPlayer />
           
           </View>
           <View style={styles.bottom}>
 
-            <SongRead></SongRead>
             <Text style={styles.title}>Box2</Text>
           
           </View>
