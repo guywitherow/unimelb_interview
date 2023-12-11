@@ -5,8 +5,8 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 
-import {styles} from './Style';
-import FileDropdown from './Selector';
+import {styles} from './ui/Style';
+import FileDropdown from './ui/Selector';
 
 
 SplashScreen.preventAutoHideAsync();
