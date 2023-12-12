@@ -14,6 +14,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [song, setSong] = useState('Nothing Playing');
 
   useEffect(() => {
     const loadFonts = async () => {
@@ -26,8 +27,6 @@ export default function App() {
     };
 
     loadFonts();
-
-    AudioPlayer.playSound(require("./assets/songs/music/blues/blues.00000.wav"));
   }, []);
 
   return (
@@ -41,14 +40,13 @@ export default function App() {
         <>
           <View style={styles.top}>
 
-            <FileDropdown></FileDropdown>
-            <Text style={styles.title}>Box2</Text>
-            <AudioPlayer />
+            <FileDropdown song={song} setSong={setSong}></FileDropdown>
+            <AudioPlayer song={song} setSong={setSong} estGenre={"Rock"}></AudioPlayer>
           
           </View>
           <View style={styles.bottom}>
 
-            <Text style={styles.title}>Box2</Text>
+            <Text style={styles.title}>Graphy</Text>
           
           </View>
           <StatusBar style="auto" />
