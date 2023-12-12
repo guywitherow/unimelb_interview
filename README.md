@@ -8,3 +8,5 @@ To Run:
 - run `npx expo install`
 - run `npx expo start`
 - connect to app from the Expo Go phone app
+
+[![Video](https://img.youtube.com/vi/iyTocWBWm5s/0.jpg)](https://www.youtube.com/watch?v=iyTocWBWm5s)
