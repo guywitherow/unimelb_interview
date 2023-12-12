@@ -279,6 +279,7 @@ export default {
           "label": "rock.00000",
           "value": "rock.00000.wav",
           "file": Asset.fromModule(require('../assets/songs/music/rock/rock.00000.wav')),
+          "image": Asset.fromModule(require('../assets/songs/spectographs/blues/blues00000.png')),
         },
         {
           "label": "rock.00001",

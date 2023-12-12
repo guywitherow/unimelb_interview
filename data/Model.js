@@ -1,34 +1,35 @@
-import React from 'react';
-import tflite, { useTensorflowModel } from 'react-native-fast-tflite';
+import * as tf from '@tensorflow/tfjs';
+import { bundleResourceIO, decodePng } from '@tensorflow/tfjs-react-native';
+import * as FileSystem from 'expo-file-system';
+import * as ImageManipulator from 'expo-image-manipulator';
 
-const ModelProcessing = ({ songName }) => {
+export async function processImage(imageAsset) {
+    await tf.ready();
 
-    const imageModel = useTensorflowModel(require('./GTZAN_model.tflite'));
+    const modelPath = require('./jsmodel4/model.json');
+    const modelWeightsPath = require('./jsmodel4/group1-shard1of1.bin');
+    const model = await tf.loadGraphModel(bundleResourceIO(modelPath, modelWeightsPath));
 
-    const imageName = songName.split('.').join('');
-    const genre = songName.split('.')[0];
-
-    const imagePath = `assets/songs/spectrographs/${genre}/${imageName}.png`;
-
-    // Prepare the image for processing on the tflite model
-    const prepareImage = async (imagePath) => {
-        // Load the spectrograph image as a TensorImage from the tflite library
-        const tensorImage = new tflite.TensorImage(imagePath);
-
-        // Transform the image for processing on the tflite model
-        // ...
-    };
-
-    // Import the tflite model and have it ready to use
-    const model = new tflite.Model();
-    model.loadModel(tfliteModel);
-
-    return (
-        <div>
-            {/* Render the spectrograph image */}
-            <img src={imagePath} alt="Spectrograph" />
-        </div>
+    const { uri } = await ImageManipulator.manipulateAsync(
+        imageAsset.uri,
+        [],
+        { format: ImageManipulator.SaveFormat.PNG }
     );
-};
 
-export default ModelProcessing;
+    const imageRaw = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
+    const imageBuffer = tf.util.encodeString(imageRaw, 'base64');
+
+    console.log(imageBuffer);
+
+    const imageTensor = decodePng(imageBuffer);
+
+    const normalizedTensor = imageTensor.div(255);
+
+    const processedTensor = model.predict(normalizedTensor);
+
+    const processedArray = await processedTensor.array();
+
+    return processedArray;
+}
+
+export default processImage;
