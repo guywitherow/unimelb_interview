@@ -46,7 +46,7 @@ export default function App() {
           <View style={styles.top}>
 
             <FileDropdown song={song} setSong={setSong}></FileDropdown>
-            <AudioPlayer song={song} setSong={setSong} estGenre={"Rock"}></AudioPlayer>
+            <AudioPlayer song={song} setSong={setSong} estGenre={"Classical"}></AudioPlayer>
           
           </View>
           <View style={styles.bottom}>
